@@ -57,7 +57,7 @@ def main():
 
     load_dotenv()
 
-    st.set_page_config(page_title="Chat with multiple PDFs", page_icon=":books:")
+    st.set_page_config(page_title="Chatbot: everykmcounts", page_icon=":books:")
     
     #st.write(css, unsafe_allow_html=True)
 
@@ -67,7 +67,7 @@ def main():
     #st.write(user_template.replace("{{MSG}}", "Hi bot!"), unsafe_allow_html = True)
     #st.write(bot_template.replace("{{MSG}}", "Hi there!"), unsafe_allow_html=True)
 
-    st.header("Chat with multiple PDFs :books:")
+    st.header("Chatbot: everykmcounts :books:")
     user_question = st.text_input("Ask a question about your documents")
     if user_question:
         handle_userinput(user_question)
