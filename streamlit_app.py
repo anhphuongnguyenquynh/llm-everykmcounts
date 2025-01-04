@@ -58,7 +58,7 @@ def main():
 
     load_dotenv()
 
-    st.set_page_config(page_title="everykmcounts", page_icon=":runner:")
+    st.set_page_config(page_title="everykmcounts", page_icon=":swimmer::runner:")
     
     st.write(css, unsafe_allow_html=True)
 
