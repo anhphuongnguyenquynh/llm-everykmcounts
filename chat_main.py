@@ -3,10 +3,16 @@ from langchain_core.messages import HumanMessage, AIMessage
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_openai import ChatOpenAI
+from langchain.embeddings import OpenAIEmbeddings
+from langchain.chat_models import ChatOpenAI
+from langchain_chroma import Chroma
 from dotenv import load_dotenv
+from chat_chroma import get_rag_response
 
 load_dotenv()
 
+if "conversation" not in st.session_state:
+    st.session_state.conversation = []
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
 
@@ -41,8 +47,8 @@ for message in st.session_state.chat_history:
         with st.chat_message("AI"):
             st.markdown(message.content)
 
-#get_response
-def get_response(query, chat_history):
+#get_cheer_response
+def get_cheer_response(query, chat_history):
     ##query = persona + instruction + context + data_format + audience + tone + data
     template = """
     You are a runner helpful assistant give me a courage sentence. 
@@ -67,7 +73,6 @@ def get_response(query, chat_history):
 
 
 
-
 user_query = st.chat_input("Your message")
 if user_query is not None and user_query != "":
     st.session_state.chat_history.append(HumanMessage(user_query))
@@ -76,5 +81,5 @@ if user_query is not None and user_query != "":
         st.markdown(user_query)
 
     with st.chat_message("AI"):
-        ai_response = get_response(user_query, st.session_state.chat_history)
+        ai_response = get_cheer_response(user_query, st.session_state.chat_history)
         st.markdown(ai_response)

@@ -1,8 +1,7 @@
 from langchain_core.prompts import ChatPromptTemplate
 from langchain.embeddings import OpenAIEmbeddings
 from langchain.chat_models import ChatOpenAI
-#from langchain.chains.combine_documents import create_stuff_documents_chain
-#from langchain.chains import create_retrieval_chain
+from langchain.chains import RetrievalQA
 from langchain_chroma import Chroma
 from dotenv import load_dotenv
 
@@ -30,15 +29,21 @@ def get_rag_response(user_chat):
 
     #Initialize the vector store
     vvector_store = Chroma(
-    collection_name="documents",
-    embedding_function=embeddings,
-    persist_directory="./db/chroma_langchain_db",  # Where to save data locally
-    )
+                        collection_name="documents",
+                        embedding_function=embeddings,
+                        persist_directory="./db/chroma_langchain_db",  # Where to save data locally
+                    )
     
-    #Retriever
+    #Create RetrievalQA Chain
     retriever = vector_store.as_retriever(kwargs={"k": 10})
 
-    response = retriever.invoke(user_chat)
+    qa_chain = RetrievalQA.from_chain_type(
+        llm=llm,
+        chain_type = "stuff",
+        retriever = vector_store.as_retriever()
+    )
+    response = qa_chain.run(user_chat)
+    #response = retriever.invoke(user_chat)
 
     return response
         
