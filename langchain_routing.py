@@ -5,7 +5,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-classification_template = PromptTemplate.from_template(
+def question_routing(question):
+    classification_template = PromptTemplate.from_template(
     """You are good at classifying a question.
     Given the user question below, classify it as either being about `Exercises activity log`, `Sport knowledge` or 'Other'.
 
@@ -18,16 +19,20 @@ classification_template = PromptTemplate.from_template(
     </question>
 
     Classification:"""
-)
-
-classification_chain = classification_template | ChatOpenAI() | StrOutputParser()
+    )
+    
+    classification_chain = classification_template | ChatOpenAI() | StrOutputParser()
+    result = classification_chain.invoke({"question": question})
+    
+    return result
 
 #Test
-result1 = classification_chain.invoke({"question": "How to cook potato?"})
+result1 = question_routing("How to cook potato?")
 print(result1)
 
-result2 = classification_chain.invoke({"30 minutes practice yoga in this morning"})
+result2 = question_routing("I run 2km today")
 print(result2)
 
-result3 = classification_chain.invoke({"question": "How to run 10km"})
+result3 = question_routing("Half marathon training plan")
 print(result3)
+
