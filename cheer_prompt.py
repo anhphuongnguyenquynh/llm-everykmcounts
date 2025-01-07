@@ -66,8 +66,6 @@ def get_response(query, chat_history):
     })
 
 
-
-
 user_query = st.chat_input("Your message")
 if user_query is not None and user_query != "":
     st.session_state.chat_history.append(HumanMessage(user_query))

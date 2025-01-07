@@ -42,10 +42,10 @@ def get_rag_response(user_chat):
         chain_type = "stuff",
         retriever = vector_store.as_retriever()
     )
-    response = qa_chain.run(user_chat)
+    response = qa_chain.invoke(user_chat)
     #response = retriever.invoke(user_chat)
-
-    return response
+    #return is object {'query': '<question>', 'result': "<answer>"}
+    return response['result']
         
 # Run the main loop
 if __name__ == "__main__":

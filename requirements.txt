@@ -1,4 +1,5 @@
 streamlit
+pypdf
 pypdf2
 langchain
 python-dotenv
@@ -9,3 +10,6 @@ python-dotenv
 #InstructorEmbedding 
 #sentence_transformers==2.2.2
 langchain-community
+langchain_openai
+langchain_text_splitters
+langchain_chroma
