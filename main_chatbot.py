@@ -6,8 +6,8 @@ from langchain_openai import ChatOpenAI
 from langchain.embeddings import OpenAIEmbeddings
 from langchain.chat_models import ChatOpenAI
 from langchain_chroma import Chroma
-from chat_chroma import get_rag_response
-from langchain_routing import question_routing
+from chat_rag_pdfs_func import get_rag_response
+from user_query_routing_func import question_routing
 from dotenv import load_dotenv
 
 load_dotenv()
