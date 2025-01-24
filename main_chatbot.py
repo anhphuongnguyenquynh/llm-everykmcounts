@@ -14,6 +14,7 @@ from user_query_routing_func import question_routing
 from get_activity_strava_func import get_bearer_token, get_activities
 from update_activity_mysqldb import json_to_df, reformat_dataframe, update_df_mysql_db
 import requests
+import random
 
 from dotenv import load_dotenv
 
@@ -38,7 +39,7 @@ with st.sidebar:
     # if "token" in session:
     #     requests.get('http://localhost:8001/user_info', { headers={token: session.token} })
     
-    #Connect with strava => User authorize => Save code to get access token => Use access token to get athlete activity
+    #Connect with strava => User authorize => Save code to get access token => Use access token to get athlete activity => Update to mysql DB
     if "code" in st.query_params:
         strava_code = st.query_params["code"]
         st.write(strava_code, 'strava_code')
@@ -105,6 +106,12 @@ def get_cheer_response(user_question):
     # response = chain.run(user_chat)
     return cheer_response
 
+#Get greeting response function
+def get_greeting_response(user_chat):
+    greetings = ["Glad to help you. Share with me your exercises or ask me anything about sport",
+                 "Welcome to everykmcounts!"]
+    return random.choice(greetings)
+
 #Get final response with proper assignment
 def get_user_response(user_chat):
     #Routing user query by langchain
@@ -114,7 +121,8 @@ def get_user_response(user_chat):
         return get_rag_response(user_chat)
     if subchain == "Exercises activity log":
         return get_cheer_response(user_chat)
-    
+    if subchain == "Greeting":
+        return get_greeting_response(user_chat)
     if subchain == "Other":
         other_sentence = "I don't know about this topic"
         return other_sentence    
