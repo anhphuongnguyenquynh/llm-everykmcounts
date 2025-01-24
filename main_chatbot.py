@@ -6,16 +6,67 @@ from langchain_openai import ChatOpenAI
 from langchain.embeddings import OpenAIEmbeddings
 from langchain.chat_models import ChatOpenAI
 from langchain_chroma import Chroma
+import pandas as pd
+import logging
+from sqlalchemy import create_engine
 from chat_rag_pdfs_func import get_rag_response
 from user_query_routing_func import question_routing
+from get_activity_strava_func import get_bearer_token, get_activities
+from update_activity_mysqldb import json_to_df, reformat_dataframe, update_df_mysql_db
+import requests
+
 from dotenv import load_dotenv
 
 load_dotenv()
 
 st.title("everykmcounts :runner:")
 
-##SIDEBAR
+##STREAMLIT SIDEBAR
 with st.sidebar:
+    #Button connect with Strava
+    #st.link_button(label = "Connect with Strava", 
+    #               url = "https://www.strava.com/oauth/authorize?client_id=130686&response_type=code&redirect_uri=http://localhost:8501/exchange_token&approval_prompt=force&scope=activity:read_all")
+    st.markdown("<a href = \"https://www.strava.com/oauth/authorize?client_id=130686&response_type=code&redirect_uri=http://localhost:8501/&approval_prompt=force&scope=activity:read_all\" target= '_self' >Connect with Strava </a>", unsafe_allow_html=True)
+    
+
+    # if "code" in st.query_params:
+    #     response = requests.post("http://localhost:8001/connect-with-strava", json={"code": st.query_params["code"]})
+    #     st.write(response.json()) # token
+    #     st.write("Connect with strava successfully :'>")
+    #     #st.write(st.query_params["code"])
+    
+    # if "token" in session:
+    #     requests.get('http://localhost:8001/user_info', { headers={token: session.token} })
+    
+    #Connect with strava => User authorize => Save code to get access token => Use access token to get athlete activity
+    if "code" in st.query_params:
+        strava_code = st.query_params["code"]
+        st.write(strava_code, 'strava_code')
+        #1.Get activity from strava
+        ##1.1Get access token
+        access_token = get_bearer_token(strava_code)
+        st.write(access_token, 'access_token')
+        ##1.2Get activity
+        activities = get_activities(access_token=access_token)
+        st.write(activities)
+
+        #2.Update to mysql database
+        ##2.1 Convert to dataframe
+        df_activities = json_to_df(activities)
+        st.write(df_activities)
+
+        ##2.2 Reformat dataframe prepare for update mysql database
+        format_df = reformat_dataframe(df_activities)
+        st.write(format_df)
+
+        ##2.2 Update mysql database
+        status_update = update_df_mysql_db(format_df)
+        st.write(status_update)
+
+        st.write("Connect with Strava successfully :sparkles:")
+        
+    
+    #Ask user for runner_type and target
     type_runner_option = st.selectbox(
         "Which type describe you best?",
         ("I am newbie", "I regularly do exercises", "I am professional")
@@ -63,6 +114,7 @@ def get_user_response(user_chat):
         return get_rag_response(user_chat)
     if subchain == "Exercises activity log":
         return get_cheer_response(user_chat)
+    
     if subchain == "Other":
         other_sentence = "I don't know about this topic"
         return other_sentence    
