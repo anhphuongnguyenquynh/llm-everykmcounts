@@ -80,7 +80,7 @@ if __name__ == "__main__":
     #Print the đatabase scheme
     print(get_schema(db))
     # User question
-    user_question = "how many user do you have?"
+    user_question = "how many strava activity id do activites have?"
     
     # Run the chain
     response = sql_chain.invoke({"question": user_question})
