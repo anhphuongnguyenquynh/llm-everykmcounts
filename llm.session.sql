@@ -18,5 +18,6 @@ SELECT * FROM activities;
 
 -- SELECT * FROM user;
 
+-- ALTER TABLE activities ADD id int NOT NULL AUTO_INCREMENT UNIQUE FIRST;
 
 

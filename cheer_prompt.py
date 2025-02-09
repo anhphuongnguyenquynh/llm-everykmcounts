@@ -42,7 +42,7 @@ for message in st.session_state.chat_history:
             st.markdown(message.content)
 
 #get_response
-def get_response(query, chat_history):
+def get_response(query, chat_history, type_runner_option, target_option, tone_voice_option):
     ##query = persona + instruction + context + data_format + audience + tone + data
     template = """
     You are a runner helpful assistant give me a courage sentence. 
@@ -54,7 +54,9 @@ def get_response(query, chat_history):
     User question: {user_question}
     """
 
-    prompt = ChatPromptTemplate.from_template(template)
+    prompt = ChatPromptTemplate.from_template(
+        #input_variables = ["type_runner_option", "target_option", "tone_voice_option"],
+        template = template)
 
     llm = ChatOpenAI()
 

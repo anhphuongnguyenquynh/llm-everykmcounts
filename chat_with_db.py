@@ -30,6 +30,7 @@ def get_schema(db):
 ###CREATE A SQL CHAIN###
 # Define the SQL query generation template
 template = """
+You are really good at writing SQL query
 Based on the table schema below, write a SQL query that would answer the user's question:
 {schema}
 

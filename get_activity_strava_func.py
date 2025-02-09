@@ -45,6 +45,10 @@ def get_activities(access_token, per_page=30, page=1):
     :param page: Page number to fetch.
     :return: List of activities or error message.
     """
+    CLIENT_ID = '130686'
+    CLIENT_SECRET = 'f3a5a01c46f8ef409ac2f857b561ad18463beaa4'
+    BASE_URL = 'https://www.strava.com/api/v3'
+    
     url = f"{BASE_URL}/athlete/activities"
     headers = {'Authorization': f'Bearer {access_token}'}
     params = {'per_page': per_page, 'page': page}

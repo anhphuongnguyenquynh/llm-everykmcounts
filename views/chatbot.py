@@ -58,13 +58,13 @@ with st.sidebar:
 
         ##2.2 Reformat dataframe prepare for update mysql database
         format_df = reformat_dataframe(df_activities)
-        st.write(format_df)
+        #st.write(format_df)
 
         ##2.2 Update mysql database
         status_update = update_df_mysql_db(format_df)
-        st.write(status_update)
+        #st.write(status_update)
 
-        st.write("Connect with Strava successfully :sparkles:")
+        st.write("Connect with Strava successfully :sparkles: :sparkles: :sparkles:")
         
     
     #Ask user for runner_type and target
