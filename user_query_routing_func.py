@@ -9,11 +9,12 @@ load_dotenv()
 def question_routing(question):
     classification_template = PromptTemplate.from_template(
     """You are good at classifying a question.
-    Given the user question below, classify it as either being about `Exercises activity log`, `Sport knowledge`, 'Greeting' or 'Other'.
+    Given the user question below, classify it as either being about `Exercises activity log`, `Sport knowledge`, 'Greeting', 'Ask data' or 'Other'.
 
     <If the question is about complete an exercise, or user activity log, classify the question as 'Exercises activity log'>
     <If the question is about sport, running, swimming, cycling and similar topics, classify it as 'Sport knowledge'>
     <If the question is about greeting, classify the question as 'Greeting'>
+    <If the question is about data about user log in database. For examples: activities list, user information. Then classify the question as 'Ask data'>
     <If the question is about whether or anything not related to sport, classify the question as 'Other'>
 
     <question>
@@ -40,4 +41,10 @@ print(result3)
 
 result4 = question_routing("Goodbye")
 print(result4)
+
+result5 = question_routing("How many activities do I have?")
+print(result5)
+
+result6 = question_routing("Analyze my exercies performances")
+print(result5)
 
