@@ -33,6 +33,6 @@ Check out our first demo [here](https://vimeo.com/1058162997?share=copy).
 
 ## Contact
 
-For any questions or feedback, please contact us at [anhphuong.nguyenquynh02@gmail.com](mailto:anhphuong.nguyenquynh02@gmail.com).
+For any questions or feedback, please contact me at [anhphuong.nguyenquynh02@gmail.com](mailto:anhphuong.nguyenquynh02@gmail.com).
 ---
 Feel free to adjust the content according to your specific project requirements.
