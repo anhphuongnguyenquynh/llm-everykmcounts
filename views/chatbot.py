@@ -13,6 +13,7 @@ from chat_rag_pdfs_func import get_rag_response
 from user_query_routing_func import question_routing
 from get_activity_strava_func import get_bearer_token, get_activities
 from update_activity_mysqldb import json_to_df, reformat_dataframe, update_df_mysql_db
+from chat_with_db_func import answer_user_question
 import requests
 import random
 
@@ -123,6 +124,8 @@ def get_user_response(user_chat):
         return get_cheer_response(user_chat)
     if subchain == "Greeting":
         return get_greeting_response(user_chat)
+    if subchain == "Ask data":
+        return answer_user_question(user_chat)
     if subchain == "Other":
         other_sentence = "I don't know about this topic"
         return other_sentence    
