@@ -14,6 +14,7 @@ from user_query_routing_func import question_routing
 from get_activity_strava_func import get_bearer_token, get_activities
 from update_activity_mysqldb import json_to_df, reformat_dataframe, update_df_mysql_db
 from chat_with_db_func import answer_user_question
+from cheer_func import generate_cheer_response
 import requests
 import random
 
@@ -69,16 +70,16 @@ with st.sidebar:
         
     
     #Ask user for runner_type and target
-    type_runner_option = st.selectbox(
-        "Which type describe you best?",
-        ("I am newbie", "I regularly do exercises", "I am professional")
-    )
-    target_option = st.selectbox(
-        "Which target describe you want best?",
-        ("I want to do exercises more frequently", 
-         "I want to join a race in the next few months", 
-         "I practice frequently, I want to keep track my performance")
-    )
+    # type_runner_option = st.selectbox(
+    #     "Which type describe you best?",
+    #     ("I am newbie", "I regularly do exercises", "I am professional")
+    # )
+    # target_option = st.selectbox(
+    #     "Which target describe you want best?",
+    #     ("I want to do exercises more frequently", 
+    #      "I want to join a race in the next few months", 
+    #      "I practice frequently, I want to keep track my performance")
+    # )
     tone_voice_option = st.selectbox(
         "Which personality would you like everykmcounts to have?",
         ("Happy", "Angry"),
@@ -121,7 +122,7 @@ def get_user_response(user_chat):
     if subchain == "Sport knowledge":
         return get_rag_response(user_chat)
     if subchain == "Exercises activity log":
-        return get_cheer_response(user_chat)
+        return generate_cheer_response(user_chat, tone = tone_voice_option)
     if subchain == "Greeting":
         return get_greeting_response(user_chat)
     if subchain == "Ask data":

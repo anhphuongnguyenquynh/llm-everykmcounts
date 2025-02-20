@@ -1,2 +1,7 @@
 
 .env
+archive_test/chat_with_db.py
+archive_test/get_user_activity_from_strava.py
+archive_test/test_fast_api.py
+archive_test/test_strava_api.py
+/archive_test
