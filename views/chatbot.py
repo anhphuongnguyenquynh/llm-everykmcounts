@@ -14,7 +14,7 @@ from user_query_routing_func import question_routing
 from get_activity_strava_func import get_bearer_token, get_activities
 from update_activity_mysqldb import json_to_df, reformat_dataframe, update_df_mysql_db
 from chat_with_db_func import answer_user_question
-from cheer_func import generate_cheer_response
+from chat_cheer_func import generate_cheer_response
 import requests
 import random
 
@@ -84,29 +84,6 @@ with st.sidebar:
         "Which personality would you like everykmcounts to have?",
         ("Happy", "Angry"),
     )
-
-##FUNCTION GET RESPONSE
-# Get cheer response function
-def get_cheer_response(user_question):
-    ##query = persona + instruction + context + data_format + audience + tone + data
-    template = """
-    You are a runner helpful assistant give me a courage sentence. 
-    I {{type_runner_option}}. My target is {{target_option}}, give me a sentence support when I finish a run.
-    The tone should be {{tone_voice_option}} and short.
-
-    User question: {user_question}
-    """
-
-    prompt = ChatPromptTemplate.from_template(template)
-
-    llm = ChatOpenAI()
-
-    cheerchain = prompt | llm | StrOutputParser()
-
-    cheer_response = cheerchain.invoke({
-        "user_question": user_question})
-    # response = chain.run(user_chat)
-    return cheer_response
 
 #Get greeting response function
 def get_greeting_response(user_chat):
