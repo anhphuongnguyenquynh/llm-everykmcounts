@@ -4,8 +4,18 @@ json_test = [{'resource_state': 2, 'athlete': {'id': 46133187, 'resource_state':
 import pandas as pd
 from sqlalchemy import create_engine
 import logging
+from dotenv import load_dotenv
+import os
+from os.path import join, dirname
 
-engine = create_engine("mysql+pymysql://root:7913qpzm&@localhost:3306/llm_everykmcounts")
+# Load environment variables
+dotenv_path = join(dirname(__file__), '.env')
+load_dotenv(dotenv_path)
+
+# Define MySQL connection URI
+mysql_uri = os.environ.get("MYSQL_URI")
+
+engine = create_engine(mysql_uri)
 
 #df_data = pd.DataFrame(json_test)
 def json_to_df(activity_data):
@@ -73,7 +83,7 @@ def update_df_mysql_db(df_data):
                 "start_date_local",
                 "distance_meter",
                 "elapsed_time_second"]
-    engine = create_engine("mysql+pymysql://root:7913qpzm&@localhost:3306/llm_everykmcounts") 
+    engine = create_engine(mysql_uri) 
     
     try:
         with engine.connect() as conn:
