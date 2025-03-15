@@ -14,7 +14,7 @@ llm = OpenAI()
 embeddings = OpenAIEmbeddings()
 
 #Define constants
-data_folder = "./data"
+data_folder = "./vectordb/data"
 chunk_size = 1000
 chunk_overlap = 50
 check_interval = 100
@@ -23,7 +23,7 @@ check_interval = 100
 vector_store = Chroma(
     collection_name = "documents",
     embedding_function = embeddings,
-    persist_directory = "./db/chroma_langchain_db", #Save data locally
+    persist_directory = "./vectordb/chroma_langchain_db", #Save data locally
 )
 
 #Ingest a file

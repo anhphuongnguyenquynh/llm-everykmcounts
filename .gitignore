@@ -8,3 +8,4 @@ archive_test/test_strava_api.py
 lib
 bin
 everykmcounts/bin
+vectordb/data/_.DS_Store
