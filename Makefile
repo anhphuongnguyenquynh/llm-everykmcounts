@@ -2,7 +2,7 @@ ingestion:
 	python3 ./vectordb/file_ingestion.py
 
 up:
-	docker-compose up --build -d
+	docker-compose -f docker/docker-compose.yml up --build -d
 
 down:
-	docker-compose down
+	docker-compose -f docker/docker-compose.yml down
