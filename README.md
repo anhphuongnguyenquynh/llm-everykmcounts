@@ -18,7 +18,7 @@ Follow these steps to set up and start using everykmcounts:
    ```
 2. Run the application:
    ```
-   docker-compose up --build -d
+   make up
    ```
 
 ## Demo
