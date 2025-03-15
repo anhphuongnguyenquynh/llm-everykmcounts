@@ -16,3 +16,5 @@ mysql-connector-python
 fastapi 
 uvicorn[standard]
 pymysql
+matplotlib==3.5.1
+july

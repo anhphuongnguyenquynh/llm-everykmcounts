@@ -46,5 +46,5 @@ result5 = question_routing("How many activities do I have?")
 print(result5)
 
 result6 = question_routing("Analyze my exercies performances")
-print(result5)
+print(result6)
 

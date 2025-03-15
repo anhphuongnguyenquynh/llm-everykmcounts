@@ -56,7 +56,8 @@ full_chain = (
         | llm
 )
 
-user_question = 'how many activities are there?'
+#user_question = 'how many activities are there?'
+user_question = 'how long distance meter in total?'
 test_full_answer = full_chain.invoke({"question": user_question})
 print(test_full_answer.content)
 
@@ -65,6 +66,6 @@ def answer_user_question(question: str):
     return response.content
 
 if __name__ == "__main__":
-    user_question = "How many activities are there?"
+    user_question = "how long distance meter in total?"
     response = answer_user_question(user_question)
     print(response.content)
