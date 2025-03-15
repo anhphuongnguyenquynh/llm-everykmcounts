@@ -1,0 +1,42 @@
+version: "3.8"
+
+networks:
+  my_network:  # Define a custom network
+    driver: bridge  # Default network type
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: "7913qpzm&"
+      MYSQL_DATABASE: llm_everykmcounts
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: "7913qpzm&"
+    ports:
+      - "3306:3306"
+    networks:
+      - my_network  # Attach MySQL to the custom network
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  streamlit_app:
+    build: .
+    container_name: streamlit_app
+    restart: always
+    depends_on:
+      - mysql
+    ports:
+      - "8501:8501"
+    environment:
+      MYSQL_URI: "mysql+mysqlconnector://admin:7913qpzm&@mysql:3306/llm_everykmcounts"
+    networks:
+      - my_network  # Attach Streamlit app to the same network
+    volumes:
+      - .:/app
+    command: ["streamlit", "run", "streamlit_app.py", "--server.port=8501", "--server.address=0.0.0.0"]
+
+volumes:
+  mysql_data:
+
