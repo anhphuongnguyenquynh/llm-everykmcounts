@@ -11,3 +11,4 @@ everykmcounts/bin
 vectordb/data/_.DS_Store
 funcs/__pycache__/
 __pycache__
+DS_Store
