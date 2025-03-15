@@ -9,12 +9,12 @@ from langchain_chroma import Chroma
 import pandas as pd
 import logging
 from sqlalchemy import create_engine
-from chat_rag_pdfs_func import get_rag_response
-from user_query_routing_func import question_routing
-from get_activity_strava_func import get_bearer_token, get_activities
-from update_activity_mysqldb import json_to_df, reformat_dataframe, update_df_mysql_db
-from chat_with_db_func import answer_user_question
-from chat_cheer_func import generate_cheer_response
+from funcs.chat_rag_pdfs import get_rag_response
+from funcs.chat_user_query_routing import question_routing
+from funcs.get_activity_strava import get_bearer_token, get_activities
+from funcs.update_activity_mysqldb import json_to_df, reformat_dataframe, update_df_mysql_db
+from funcs.chat_with_db import answer_user_question
+from funcs.chat_cheer import generate_cheer_response
 import requests
 import random
 
