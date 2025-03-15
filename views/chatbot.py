@@ -15,7 +15,6 @@ from funcs.get_activity_strava import get_bearer_token, get_activities
 from funcs.update_activity_mysqldb import json_to_df, reformat_dataframe, update_df_mysql_db
 from funcs.chat_with_db import answer_user_question
 from funcs.chat_cheer import generate_cheer_response
-import requests
 import random
 
 from dotenv import load_dotenv

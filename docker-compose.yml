@@ -31,6 +31,10 @@ services:
       - "8501:8501"
     environment:
       MYSQL_URI: "mysql+mysqlconnector://admin:7913qpzm&@mysql:3306/llm_everykmcounts"
+      MYSQL_HOST: mysql
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: "7913qpzm&"
+      MYSQL_DATABASE: llm_everykmcounts
     networks:
       - my_network  # Attach Streamlit app to the same network
     volumes:

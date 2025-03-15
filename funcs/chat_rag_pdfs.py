@@ -15,7 +15,7 @@ llm = ChatOpenAI()
 vector_store = Chroma(
     collection_name="documents",
     embedding_function=embeddings,
-    persist_directory="./db/chroma_langchain_db",  # Where to save data locally
+    persist_directory="./vectordb/chroma_langchain_db",  # Where to save data locally
 )
 
 #Retriever
@@ -31,7 +31,7 @@ def get_rag_response(user_chat):
     vvector_store = Chroma(
                         collection_name="documents",
                         embedding_function=embeddings,
-                        persist_directory="./db/chroma_langchain_db",  # Where to save data locally
+                        persist_directory="./vectordb/chroma_langchain_db",  # Where to save data locally
                     )
     
     #Create RetrievalQA Chain
