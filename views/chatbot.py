@@ -16,19 +16,21 @@ from funcs.update_activity_mysqldb import json_to_df, reformat_dataframe, update
 from funcs.chat_with_db import answer_user_question
 from funcs.chat_cheer import generate_cheer_response
 import random
-
+import os
 from dotenv import load_dotenv
 
 load_dotenv()
 
 st.title("everykmcounts :runner:")
 
+BASE_URL = os.environ.get("BASE_URL")
+
 ##STREAMLIT SIDEBAR
 with st.sidebar:
     #Button connect with Strava
     #st.link_button(label = "Connect with Strava", 
     #               url = "https://www.strava.com/oauth/authorize?client_id=130686&response_type=code&redirect_uri=http://localhost:8501/exchange_token&approval_prompt=force&scope=activity:read_all")
-    st.markdown("<a href = \"https://www.strava.com/oauth/authorize?client_id=130686&response_type=code&redirect_uri=http://localhost:8501/&approval_prompt=force&scope=activity:read_all\" target= '_self' >Connect with Strava </a>", unsafe_allow_html=True)
+    st.markdown("<a href = \"https://www.strava.com/oauth/authorize?client_id=130686&response_type=code&redirect_uri="+BASE_URL+"/&approval_prompt=force&scope=activity:read_all\" target= '_self' >Connect with Strava </a>", unsafe_allow_html=True)
     
 
     # if "code" in st.query_params:
