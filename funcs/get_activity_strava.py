@@ -1,5 +1,6 @@
 import requests
 import pandas as pd
+import os
 
 
 #Step 1: When user click button -> redirect user to this link to get authorization
@@ -13,8 +14,8 @@ def get_bearer_token(code: str):
     url = 'https://www.strava.com/oauth/token'
     
     data = {
-        'client_id': '130686',
-        'client_secret': 'f3a5a01c46f8ef409ac2f857b561ad18463beaa4',
+        'client_id': os.environ.get("STRAVA_CLIENT_ID"),
+        'client_secret': os.environ.get("STRAVA_CLIENT_SECRET"),
         'code': code,
         'grant_type': 'authorization_code'
     }

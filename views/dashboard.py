@@ -12,6 +12,7 @@ load_dotenv(dotenv_path)
 
 connection = mysql.connector.connect(
     host = os.environ.get("MYSQL_HOST"),
+    port = os.environ.get("MYSQL_PORT"),
     user = os.environ.get("MYSQL_USER"),
     password = os.environ.get("MYSQL_PASSWORD"),
     database = os.environ.get("MYSQL_DATABASE")
