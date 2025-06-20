@@ -8,6 +8,9 @@ everykmcounts is a sport companion specialized for athletes (running, swimming, 
 - Ask and answer user question about sport (running, swimming, cycling techniques, plan,...) (RAG)
 - User ask and get answer statistics about their activities
 
+## Architecture Overview
+[Architecture Overview](/images/architecture_overview.png)
+
 ## Getting Started
 
 Follow these steps to set up and start using everykmcounts:
