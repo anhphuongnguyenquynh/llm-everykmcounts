@@ -9,7 +9,7 @@ everykmcounts is a sport companion specialized for athletes (running, swimming, 
 - User ask and get answer statistics about their activities
 
 ## Architecture Overview
-[Architecture Overview](/images/architecture_overview.png)
+![Alt text](/images/architecture_overview.png)
 
 ## Getting Started
 
