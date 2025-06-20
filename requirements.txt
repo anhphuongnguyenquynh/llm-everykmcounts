@@ -19,3 +19,5 @@ pymysql
 matplotlib==3.5.1
 july
 numpy<2.0
+dayplot
+pyqt5
