@@ -25,7 +25,7 @@ Follow these steps to set up and start using everykmcounts:
    ```
 
 ## Demo
-
+Link project: [link](llm-everykmcounts-production.up.railway.app)
 Check out our first demo [here](https://vimeo.com/1058503433?share=copy).
 
 
