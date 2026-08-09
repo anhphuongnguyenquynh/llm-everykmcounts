@@ -1,3 +1,5 @@
+
+
 # everykmcounts
 
 everykmcounts is a sport companion specialized for athletes (running, swimming, cycling, or exercising) to provide useful information, personalize training plans, and encourage athletes to complete their goals.
@@ -19,7 +21,14 @@ Follow these steps to set up and start using everykmcounts:
    ```
    git clone https://github.com/anhphuongnguyenquynh/llm-everykmcounts.git
    ```
-2. Run the application:
+2. Create a `.env` file in the root directory with your API credentials:
+   ```
+   OPENAI_API_KEY=your_openai_api_key
+   STRAVA_CLIENT_ID=your_strava_client_id
+   STRAVA_CLIENT_SECRET=your_strava_client_secret
+   BASE_URL=http://localhost:8501
+   ```
+3. Run the application:
    ```
    make up
    ```
